@@ -1,0 +1,17 @@
+services:
+  ai-processor:
+    build: .
+    container_name: note-thing-ai-processor
+    restart: unless-stopped
+    volumes:
+      - ./App:/App
+    networks:
+      - app_net
+    depends_on:
+      - database
+      - queue
+
+networks:
+  app_net:
+    name: ${NETWORK_NAME}
+    external: true

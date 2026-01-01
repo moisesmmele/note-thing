@@ -1,0 +1,21 @@
+services:
+  sync:
+    build: .
+    container_name: note-thing-sync
+    restart: unless-stopped
+    volumes:
+      - ./App:/App
+      - ./crontab:/etc/cron.d/sync-cron-source
+      - files_data:/data
+    networks:
+      - app_net
+
+volumes:
+  files_data:
+    name: ${FILES_VOLUME_NAME}
+    external: true
+
+networks:
+  app_net:
+    name: ${NETWORK_NAME}
+    external: true
