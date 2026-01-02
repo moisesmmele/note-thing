@@ -28,7 +28,7 @@ The application removes the burden of manual filing. It automatically analyzes c
 ### 4.3. Review-Driven Engagement
 The system enforces a time delay between note creation and note processing. This "distancing" promotes re-engagement, helping the user fixate the idea in their memory while validating the system's output.
 
-### 4.4. Proactive Assistant (The "Secretary" Role)
+### 4.4. Proactive Assistance
 Rather than requiring the user to search for information, the app proactively pushes information. It delivers daily briefings, summaries, and reminders via external channels (e.g., Discord, Email) to assist with daily planning.
 
 ## 5. Technical Architecture & MVP Constraints
@@ -40,12 +40,10 @@ To minimize complexity, the MVP will not include a native text editor.
 
 ### 5.2. AI Integration
 * **Engine:** The system utilizes the Google Gemini ecosystem.
-    * **Gemini API (Free Tier):** Used for lightweight tasks and embeddings.
-    * **Gemini CLI (Pro):** Used for heavy-duty processing tasks.
 
 ### 5.3. Database & State Management
 * **Database:** **MongoDB Community Edition**.
-    * *Rationale:* Chosen for its schema-less flexibility (avoiding rigid SQL migrations) and native support for Vector Search.
+    * *Rationale:* Chosen for its schema-less flexibility (avoiding rigid SQL migrations) and (as of recently) native support for Vector Search.
 * **Data Integrity:**
     * **Immutability:** Notes are treated as immutable upon ingestion.
     * **Change Tracking:** The system uses **MinHash** for content-agnostic hashing. If a source file is modified, the AI re-processes the note. If the source is deleted, the processed version is removed.
