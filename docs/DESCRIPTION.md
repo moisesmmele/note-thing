@@ -52,7 +52,7 @@ To minimize complexity, the MVP will not include a native text editor.
 
 ### 5.4. Infrastructure & Communication
 * **Scheduling:** Simple **Cronjobs** will handle task scheduling for the MVP to reduce architectural complexity.
-* **IPC:** Inter-process communication uses Webhooks to update long-living processes.
+* **IPC:** Inter-process communication uses **Redis Streams** to update long-living processes.
 * **Notifications (v1):** Output is strictly via **Discord Webhooks**. Future versions may support Email or Telegram through abstraction layers.
 
 ## 6. Frontend Interface

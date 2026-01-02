@@ -4,7 +4,7 @@
 * **Architecture Pattern:** Service-Oriented (Containerized)
 * **Data Flow Strategy:** ETL with Human-in-the-Loop (HITL) Validation
 * **State Management:** Centralized Document Store (MongoDB)
-* **Inter-Service Signaling:** Webhook-based Push Notifications
+* **Inter-Service Signaling:** Event System (Redis Streams)
 * **Primary Trigger:** Cron-based Scheduling (Polled execution)
 * **External Integration:** Discord (Notifications), Google Gemini (AI), Joplin (Source)
 
@@ -34,7 +34,7 @@
 * **Runtime Model:** Ephemeral Batch Job
 * **Activation Strategy:** Scheduled Cron (Every 1 hr)
 * **Input Context:** MongoDB (Status: New/Updated)
-* **Output / Side Effect:** Database Update & Webhook Emission
+* **Output / Side Effect:** Database Update & Redis Stream Event
 * **Core Responsibility:** AI Tagging, Formatting, & Context Retrieval
 * **Key Technology:** Google Gemini API
 
@@ -46,12 +46,12 @@
 *The user-facing component that facilitates the "Review Loop" and handles application state visualization.*
 
 #### **Service D: Interaction Server (UI)**
-* **Runtime Model:** Long-lived Daemon
-* **Activation Strategy:** HTTP Request & Webhook Listener
+* **Runtime Model:** Long-lived Daemon (FrankenPHP)
+* **Activation Strategy:** HTTP Request & Redis Stream Consumer
 * **Input Context:** Database State & User Action
 * **Output / Side Effect:** JSON/HTML Response & Database Mutation
 * **Core Responsibility:** Visualization & State Finalization (Human-in-the-Loop)
-* **Key Technology:** Laravel Framework
+* **Key Technology:** Vanilla PHP (FrankenPHP)
 
 
 

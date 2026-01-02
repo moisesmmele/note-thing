@@ -104,16 +104,24 @@ This document represents the single source of truth and is shared across all ser
 
 ---
 
-## 3. Internal Eventing (Webhooks)
+## 3. Internal Eventing (Redis Streams)
 *The contract for inter-service signaling (Processors $\rightarrow$ UI).*
+
+**Stream Key:** `note_events`
 
 ### Event: Review Ready
 **Trigger:** **AI Processor** finishes tagging/formatting.
-**Target:** **Interaction Server** (`GET /webhook/reviews-updated`).
+**Consumer:** **Interaction Server**.
+**Payload (XADD key-values):**
+* `event`: `REVIEW_READY`
+* `note_uuid`: `<uuid-v4>`
 
 ### Event: Note Finalized
 **Trigger:** **Interaction Server** processes user approval.
-**Target:** **Interaction Server** (Internal State Update) $\rightarrow$ updates Database.
+**Consumer:** **Debrief Dispatcher** (or other subscribers).
+**Payload (XADD key-values):**
+* `event`: `NOTE_FINALIZED`
+* `note_uuid`: `<uuid-v4>`
 
 ---
 
