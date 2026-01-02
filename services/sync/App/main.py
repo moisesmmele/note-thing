@@ -10,7 +10,11 @@ from typing import Dict, List, Optional
 # Configuration
 REDIS_HOST = os.getenv("REDIS_HOST", "redis")
 REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongo:27017/")
+MONGO_HOST = os.getenv("MONGO_HOST", "database")
+MONGO_PORT = int(os.getenv("MONGO_PORT", 27017))
+MONGO_USER = os.getenv("MONGO_USER", "note-thing")
+MONGO_PASSWORD = os.getenv("MONGO_PASSWORD", "note-thing")
+
 MONGO_DB = os.getenv("MONGO_DB", "note_thing")
 RAW_DATA_DIR = os.getenv("EXPORT_DIR", "/data/raw")
 STREAM_KEY = "note_events"
@@ -23,7 +27,12 @@ class SyncService:
         self.redis_client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
         
         # Connect to MongoDB
-        self.mongo_client = pymongo.MongoClient(MONGO_URI)
+        if MONGO_USER and MONGO_PASSWORD:
+            mongo_uri = f"mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/"
+        else:
+            mongo_uri = f"mongodb://{MONGO_HOST}:{MONGO_PORT}/"
+            
+        self.mongo_client = pymongo.MongoClient(mongo_uri)
         self.db = self.mongo_client[MONGO_DB]
         self.notes_collection = self.db["notes"]
         self.revisions_collection = self.db["revisions"]

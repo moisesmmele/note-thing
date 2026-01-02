@@ -6,9 +6,16 @@ services:
     environment:
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
-      - MONGO_URI=${MONGO_URI}
+      - MONGO_HOST=${MONGO_HOST}
+      - MONGO_PORT=${MONGO_PORT}
       - MONGO_DB=${MONGO_DB}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
       - EXPORT_DIR=${EXPORT_DIR}
+      - JOPLIN_SYNC_TARGET_ID=${JOPLIN_SYNC_TARGET_ID}
+      - JOPLIN_SERVER_URL=${JOPLIN_SERVER_URL}
+      - JOPLIN_SERVER_EMAIL=${JOPLIN_SERVER_EMAIL}
+      - JOPLIN_SERVER_PASSWORD=${JOPLIN_SERVER_PASSWORD}
     volumes:
       - ./App:/App
       - ./scripts:/scripts

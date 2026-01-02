@@ -10,6 +10,13 @@ services:
       - app_net
     depends_on:
       - database
+    environment:
+      - MONGO_HOST=${MONGO_HOST}
+      - MONGO_PORT=${MONGO_PORT}
+      - MONGO_DB=${MONGO_DB}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
 
 networks:
   app_net:
