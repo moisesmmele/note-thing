@@ -3,8 +3,15 @@ services:
     build: .
     container_name: note-thing-sync
     restart: unless-stopped
+    environment:
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - MONGO_URI=${MONGO_URI}
+      - MONGO_DB=${MONGO_DB}
+      - EXPORT_DIR=${EXPORT_DIR}
     volumes:
       - ./App:/App
+      - ./scripts:/scripts
       - ./crontab:/etc/cron.d/sync-cron-source
       - files_data:/data
     networks:

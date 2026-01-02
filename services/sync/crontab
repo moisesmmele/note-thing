@@ -1,1 +1,1 @@
-*/10 * * * * root python3 /App/main.py >> /var/log/cron.log 2>&1
+*/10 * * * * root /scripts/export_notes.sh >> /var/log/cron.log 2>&1
