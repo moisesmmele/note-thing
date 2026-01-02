@@ -1,0 +1,17 @@
+services:
+  delivery:
+    build: .
+    container_name: note-thing-delivery
+    restart: unless-stopped
+    volumes:
+      - ./App:/App
+      - ./crontab:/etc/cron.d/delivery-cron-source
+    networks:
+      - app_net
+    depends_on:
+      - database
+
+networks:
+  app_net:
+    name: ${NETWORK_NAME}
+    external: true

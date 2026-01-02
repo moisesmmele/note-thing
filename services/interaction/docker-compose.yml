@@ -1,0 +1,15 @@
+services:
+  interaction:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: note-thing-interaction
+    volumes:
+      - ./App:/app
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    name: ${NETWORK_NAME}
+    external: true

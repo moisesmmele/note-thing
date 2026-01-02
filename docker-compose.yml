@@ -27,7 +27,11 @@ networks:
     external: true
 
 include:
-  - services/sync/docker-compose.yml
-  - services/ai-processor/docker-compose.yml
-  - services/interaction/docker-compose.yml
-  - services/delivery/docker-compose.yml
+  - path: services/sync/docker-compose.yml
+    env_file: .env
+  - path: services/ai-processor/docker-compose.yml
+    env_file: .env
+  - path: services/interaction/docker-compose.yml
+    env_file: .env
+  - path: services/delivery/docker-compose.yml
+    env_file: .env
