@@ -19,7 +19,7 @@
 * **Runtime Model:** Ephemeral Batch Job
 * **Activation Strategy:** Scheduled Cron (Every 10 min)
 * **Input Context:** Joplin Client CLI & Local File System
-* **Output / Side Effect:** Database Upsert (Create/Update)
+* **Output / Side Effect:** Database Upsert (Create/Update) & Redis Stream Event
 * **Core Responsibility:** Mirroring, Change Detection (MinHash) & Classification
 * **Key Technology:** Python Script & Hashing Algorithms (MD5/MinHash)
 
@@ -31,9 +31,9 @@
 *The core logic center where unstructured data is converted into structured knowledge using AI.*
 
 #### **Service C: AI Processor**
-* **Runtime Model:** Ephemeral Batch Job
-* **Activation Strategy:** Scheduled Cron (Every 1 hr)
-* **Input Context:** MongoDB (Status: New/Updated)
+* **Runtime Model:** Long-lived Daemon
+* **Activation Strategy:** Redis Stream Consumer
+* **Input Context:** Stream Event (Event: `NOTE_INGESTED`)
 * **Output / Side Effect:** Database Update & Redis Stream Event
 * **Core Responsibility:** AI Tagging, Formatting, & Context Retrieval
 * **Key Technology:** Google Gemini API

@@ -109,6 +109,13 @@ This document represents the single source of truth and is shared across all ser
 
 **Stream Key:** `note_events`
 
+### Event: Note Ingested
+**Trigger:** **Ingestion Service** detects changes in Joplin.
+**Consumer:** **AI Processor**.
+**Payload (XADD key-values):**
+* `event`: `NOTE_INGESTED`
+* `note_uuid`: `<uuid-v4>`
+
 ### Event: Review Ready
 **Trigger:** **AI Processor** finishes tagging/formatting.
 **Consumer:** **Interaction Server**.

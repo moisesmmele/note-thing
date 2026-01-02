@@ -51,7 +51,7 @@ To minimize complexity, the MVP will not include a native text editor.
     * **Change Tracking:** The system uses **MinHash** for content-agnostic hashing. If a source file is modified, the AI re-processes the note. If the source is deleted, the processed version is removed.
 
 ### 5.4. Infrastructure & Communication
-* **Scheduling:** Simple **Cronjobs** will handle task scheduling for the MVP to reduce architectural complexity.
+* **Scheduling:** **Cronjobs** handle strict periodic tasks (like ingestion polling and daily debriefs), while the core processing loop is **Event-Driven**.
 * **IPC:** Inter-process communication uses **Redis Streams** to update long-living processes.
 * **Notifications (v1):** Output is strictly via **Discord Webhooks**. Future versions may support Email or Telegram through abstraction layers.
 
