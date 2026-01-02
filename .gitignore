@@ -11,7 +11,6 @@ Desktop.ini
 
 # AI related
 .agent/
-docs/
 
 # Python (Recursive)
 **/__pycache__/
