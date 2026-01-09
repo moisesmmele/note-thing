@@ -4,8 +4,6 @@ services:
     container_name: note-thing-sync
     restart: unless-stopped
     environment:
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT}
       - MONGO_HOST=${MONGO_HOST}
       - MONGO_PORT=${MONGO_PORT}
       - MONGO_DB=${MONGO_DB}
@@ -23,6 +21,9 @@ services:
       - files_data:/data
     networks:
       - app_net
+    depends_on:
+      - database
+      - nats
 
 volumes:
   files_data:
