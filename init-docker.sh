@@ -46,5 +46,6 @@ create_network "$NETWORK_NAME"
 # Create Volumes
 create_volume "$MONGO_VOLUME_NAME"
 create_volume "$FILES_VOLUME_NAME"
+create_volume "$NATS_VOLUME_NAME"
 
 echo "Docker resources initialization complete."
